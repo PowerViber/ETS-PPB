@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nusantara - Recipe Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fbf9f5",
+                        "secondary-fixed": "#a3f69c",
+                        "surface-container-low": "#f5f3ef",
+                        "surface-bright": "#fbf9f5",
+                        "surface-container-highest": "#e4e2de",
+                        "on-primary-container": "#fffbff",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#fffbff",
+                        "tertiary-container": "#8d6e63",
+                        "primary-fixed-dim": "#ffb5a0",
+                        "on-primary-fixed": "#3b0900",
+                        "on-secondary-fixed-variant": "#005312",
+                        "primary-fixed": "#ffdbd1",
+                        "surface-container-high": "#eae8e4",
+                        "tertiary": "#72554b",
+                        "surface-container": "#efeeea",
+                        "outline-variant": "#e3beb5",
+                        "inverse-on-surface": "#f2f0ed",
+                        "primary-container": "#d34011",
+                        "on-tertiary-fixed-variant": "#5b4137",
+                        "tertiary-fixed": "#ffdbce",
+                        "on-background": "#1b1c1a",
+                        "on-secondary-fixed": "#002204",
+                        "inverse-primary": "#ffb5a0",
+                        "surface": "#fbf9f5",
+                        "on-surface-variant": "#5a413a",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#b12d00",
+                        "secondary-fixed-dim": "#88d982",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#217128",
+                        "on-tertiary-fixed": "#2b160f",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#e4beb2",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1b1c1a",
+                        "inverse-surface": "#30312e",
+                        "error-container": "#ffdad6",
+                        "secondary": "#1b6d24",
+                        "surface-dim": "#dbdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e4e2de",
+                        "error": "#ba1a1a",
+                        "outline": "#8f7068",
+                        "secondary-container": "#a0f399",
+                        "primary": "#ad2c00",
+                        "on-primary-fixed-variant": "#872000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; background-color: #fbf9f5; color: #1b1c1a; }
+        .font-serif { font-family: 'Noto Serif', serif; }
+        .glass-nav { background: rgba(251, 249, 245, 0.8); backdrop-filter: blur(12px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary-fixed-dim">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-40 bg-stone-100/50 dark:bg-stone-900/50 backdrop-blur-md flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform text-orange-800 dark:text-orange-500">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-serif text-2xl font-black italic tracking-tighter text-orange-900 dark:text-orange-100">Nusantara</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform text-orange-800 dark:text-orange-500">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform text-orange-800 dark:text-orange-500">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</header>
+<main class="pb-32">
+<!-- Hero Section -->
+<section class="relative w-full h-[530px] overflow-hidden">
+<img alt="Rendang Daging Sapi" class="w-full h-full object-cover" data-alt="Close-up of rich dark brown beef rendang garnished with fresh red chili and kaffir lime leaves on an earthy ceramic plate, soft morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAACknOzwT_qQMaRIbWoHapLl7cZGk18kUaTObwSFRdx00nNSusVefrF6hJVOop4gKeDGrcJ_EYwUkfcU4yrYSxUk1dtAoSNPfCgJEgcC59MZttb1McBsre3DlOPccMATk_DGsgnwoArI8aaYin_q6iLQTm5trzglGyzPQrQ64uHh-cJnvdEUg7kGtqNefjFMWeGOxPO7Bg2yL-1BFAkNywnc0B4SVKQwVAe1UA5dvFSGX8RIqBYHieb9JRWuoQndMl4wL0haq1m59m"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</section>
+<!-- Content Shell -->
+<div class="px-6 -mt-32 relative z-10 max-w-4xl mx-auto">
+<div class="bg-surface p-8 rounded-xl">
+<!-- Recipe Header Info -->
+<div class="mb-10">
+<span class="font-label text-[10px] font-bold uppercase tracking-[0.1em] text-secondary mb-2 block">Minangkabau Heritage</span>
+<h2 class="font-headline text-5xl md:text-6xl font-black italic text-on-surface leading-tight mb-4">Rendang Daging Sapi Padang</h2>
+<p class="font-body text-lg text-on-surface-variant leading-relaxed mb-8 max-w-2xl">
+                        A slow-cooked masterpiece of beef braised in coconut milk and a rich spice paste until the liquid evaporates and the meat turns dark, tender, and intensely flavorful.
+                    </p>
+<!-- Stats Grid -->
+<div class="flex flex-wrap gap-6">
+<div class="flex items-center gap-3 px-4 py-2 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="schedule">schedule</span>
+<div class="flex flex-col">
+<span class="font-label text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Prep Time</span>
+<span class="font-body font-bold text-sm">4 Hours</span>
+</div>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="restaurant">restaurant</span>
+<div class="flex flex-col">
+<span class="font-label text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Servings</span>
+<span class="font-body font-bold text-sm">6 Portions</span>
+</div>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="bolt">bolt</span>
+<div class="flex flex-col">
+<span class="font-label text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Complexity</span>
+<span class="font-body font-bold text-sm">Artisan</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tabs -->
+<div class="flex gap-8 mb-12 border-b-0">
+<button class="relative group pb-4">
+<span class="font-headline text-2xl italic font-bold text-primary">Bahan-bahan</span>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-full"></div>
+</button>
+<button class="relative group pb-4">
+<span class="font-headline text-2xl italic font-bold text-on-surface-variant hover:text-on-surface transition-colors">Cara Pembuatan</span>
+</button>
+</div>
+<!-- Bento Grid Content (Ingredients) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-6">
+<h4 class="font-label text-xs font-black uppercase tracking-[0.2em] text-on-surface-variant/60">The Base</h4>
+<div class="space-y-4">
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl cursor-pointer hover:bg-surface-container transition-colors group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="ml-4 font-body font-medium text-on-surface group-hover:translate-x-1 transition-transform">1kg Beef Shank, cut into cubes</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl cursor-pointer hover:bg-surface-container transition-colors group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="ml-4 font-body font-medium text-on-surface group-hover:translate-x-1 transition-transform">3 Liters thick coconut milk</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl cursor-pointer hover:bg-surface-container transition-colors group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="ml-4 font-body font-medium text-on-surface group-hover:translate-x-1 transition-transform">4 stalks Lemongrass, bruised</span>
+</label>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="font-label text-xs font-black uppercase tracking-[0.2em] text-on-surface-variant/60">The Spiced Paste (Bumbu)</h4>
+<div class="space-y-4">
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl cursor-pointer hover:bg-surface-container transition-colors group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="ml-4 font-body font-medium text-on-surface group-hover:translate-x-1 transition-transform">100g Shallots &amp; 50g Garlic</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl cursor-pointer hover:bg-surface-container transition-colors group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="ml-4 font-body font-medium text-on-surface group-hover:translate-x-1 transition-transform">250g Red Chilies (mix of curly and bird's eye)</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl cursor-pointer hover:bg-surface-container transition-colors group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="ml-4 font-body font-medium text-on-surface group-hover:translate-x-1 transition-transform">50g Galangal &amp; 20g Ginger</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Instructions Peek (Editorial Style) -->
+<div class="mt-24 space-y-12">
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="font-headline text-2xl font-black italic text-on-primary-fixed-variant">01</span>
+</div>
+<div class="space-y-4">
+<h5 class="font-headline text-2xl italic font-bold">The Infusion Begins</h5>
+<p class="font-body text-on-surface-variant leading-relaxed text-lg">
+                                In a large heavy-bottomed pot or wok, combine the coconut milk, spice paste, lemongrass, kaffir lime leaves, and turmeric leaf. Bring to a gentle boil, stirring continuously to prevent the coconut milk from breaking.
+                            </p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="flex-shrink-0 w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="font-headline text-2xl font-black italic text-on-surface-variant">02</span>
+</div>
+<div class="space-y-4">
+<h5 class="font-headline text-2xl italic font-bold">Slow Reduction</h5>
+<p class="font-body text-on-surface-variant leading-relaxed text-lg">
+                                Add the beef cubes. Reduce heat to low and simmer, stirring occasionally. This is the patience phase—the liquid must slowly reduce and thicken into a "Kalio" state before turning into Rendang.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Floating Pill) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md bg-white/80 dark:bg-stone-900/80 backdrop-blur-xl rounded-full z-50 flex justify-around items-center px-4 py-2 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+<div class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 p-2 hover:scale-110 transition-transform active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-sans text-[10px] font-bold uppercase tracking-[0.1em]">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 p-2 hover:scale-110 transition-transform active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-sans text-[10px] font-bold uppercase tracking-[0.1em]">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 p-2 hover:scale-110 transition-transform active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-sans text-[10px] font-bold uppercase tracking-[0.1em]">Favorites</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 p-2 hover:scale-110 transition-transform active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-sans text-[10px] font-bold uppercase tracking-[0.1em]">Profile</span>
+</div>
+</nav>
+<!-- Start Cooking FAB Overlay -->
+<div class="fixed bottom-24 left-0 right-0 flex justify-center z-40 pointer-events-none px-6">
+<button class="pointer-events-auto bg-gradient-to-br from-primary to-primary-container text-on-primary-container flex items-center gap-3 px-10 py-5 rounded-full shadow-2xl shadow-primary/30 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="fire_re_extinguisher" style="font-variation-settings: 'FILL' 1;">cooking</span>
+<span class="font-label font-black uppercase tracking-widest text-sm">Mulai Memasak</span>
+</button>
+</div>
+</body></html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fbf9f5",
+                    "secondary-fixed": "#a3f69c",
+                    "surface-container-low": "#f5f3ef",
+                    "surface-bright": "#fbf9f5",
+                    "surface-container-highest": "#e4e2de",
+                    "on-primary-container": "#fffbff",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#fffbff",
+                    "tertiary-container": "#8d6e63",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "on-primary-fixed": "#3b0900",
+                    "on-secondary-fixed-variant": "#005312",
+                    "primary-fixed": "#ffdbd1",
+                    "surface-container-high": "#eae8e4",
+                    "tertiary": "#72554b",
+                    "surface-container": "#efeeea",
+                    "outline-variant": "#e3beb5",
+                    "inverse-on-surface": "#f2f0ed",
+                    "primary-container": "#d34011",
+                    "on-tertiary-fixed-variant": "#5b4137",
+                    "tertiary-fixed": "#ffdbce",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#002204",
+                    "inverse-primary": "#ffb5a0",
+                    "surface": "#fbf9f5",
+                    "on-surface-variant": "#5a413a",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#b12d00",
+                    "secondary-fixed-dim": "#88d982",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#217128",
+                    "on-tertiary-fixed": "#2b160f",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#e4beb2",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1b1c1a",
+                    "inverse-surface": "#30312e",
+                    "error-container": "#ffdad6",
+                    "secondary": "#1b6d24",
+                    "surface-dim": "#dbdad6",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e4e2de",
+                    "error": "#ba1a1a",
+                    "outline": "#8f7068",
+                    "secondary-container": "#a0f399",
+                    "primary": "#ad2c00",
+                    "on-primary-fixed-variant": "#872000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-[#fbf9f5] dark:bg-stone-950 bg-stone-100/50 dark:bg-stone-900/50 backdrop-blur-md docked full-width top-0 sticky z-40">
+<div class="flex justify-between items-center w-full px-6 py-4">
+<button class="text-orange-800 dark:text-orange-500 hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-serif text-2xl font-black italic tracking-tighter text-orange-900 dark:text-orange-100">Nusantara</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User portrait" data-alt="Close up portrait of a smiling professional chef in a white uniform with warm kitchen lighting in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX3yUSsAdSt2v5k_E85NHWbnnWj2peK7IdJcPWONAMjDjmB2OJLkLAwghRBXSj3raqeQTBpOny6q9aAyzyWRN488yI-whosdG0KDLu8rPL41mf7iTKlVCofZ5kHubjNjQOZyWKfW-5Q_EG5Hb_gGH_DvYPsXbuUZJDa5pEcCtkwR9PI_bKFoB49L3fqiYvxxeVpSX89B7Nxav-0-U04Kz7SKEaA5fWjC3qkJvm2tW-LOj_1ogGpEN7n30KzsELUDeYT1GAr34SQrcH"/>
+</div>
+</div>
+</header>
+<main class="max-w-screen-md mx-auto px-6 pt-8 pb-32">
+<!-- Search Section -->
+<section class="mb-12">
+<div class="relative group">
+<div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full bg-surface-container-highest border-none rounded-xl py-5 pl-14 pr-6 text-on-surface focus:ring-2 focus:ring-primary-container transition-all placeholder:text-on-surface-variant/50 font-medium" placeholder="Cari nama resep atau bahan..." type="text"/>
+</div>
+</section>
+<!-- Popular Ingredients -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline text-2xl font-bold italic text-on-surface">Bahan Populer</h2>
+<span class="font-label text-[10px] font-bold uppercase tracking-[0.1em] text-secondary">Lihat Musim Ini</span>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<!-- Ingredient 1 -->
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col items-center justify-center space-y-3 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full overflow-hidden">
+<img alt="Ayam" data-alt="Close up of fresh organic chicken breast on a wooden board with sprigs of rosemary and scattered peppercorns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHhCRCCo7MsNqHhDv_pIc4oxVX912gxf2MVrLKWg_I0V59oSDOd6jEYPv3POeGOz6oWanxpOeLVnyIvJJvoo06CDaiU-vMMMlQEOflwphJdtPSKSbrJKt_52ZYDEL-4tVUvIR0QiZOI8MDNtRPJ_89VEUwP_QKW-1qlqJtC_wVCo8TsKsp6-LTde2ZFDqVtYDww5NvdeUIPZLsR5ZS3ByLDQZm4QDqv8b5bhBXvv72tGTS1taFrDTWCRuwLiKYmy8qNxwGnU6Xa8PE"/>
+</div>
+<span class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">Ayam</span>
+</div>
+<!-- Ingredient 2 -->
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col items-center justify-center space-y-3 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full overflow-hidden">
+<img alt="Daging" data-alt="High quality marbled raw beef steak on a slate background with coarse sea salt and garlic cloves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKe6NGUwKAo05SA-Bckj9QzarFm1smE-U4pahXY58iSuGgDWSrzZbpke3ZK2nO4P7ZhlDCDDp5wDeAJF0B5SnxlInpu_VQJJa5cTlzP1tOHXCzFibw5eaXvsufyPX00jrQ-o2DfJ0VwvE3apwBIlrqUWE9MLs7SL3_eQs-sZ4fo_UOhysoJB-OJtBJMvjfEajSDE8ipXIXbUJdj9His5I1de0L-kGdvH2GNwDbpd5av0NeJIB-DCyaE4NeyArLmE7hbnXCyJn24otM"/>
+</div>
+<span class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">Daging</span>
+</div>
+<!-- Ingredient 3 -->
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col items-center justify-center space-y-3 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full overflow-hidden">
+<img alt="Tempe" data-alt="Traditional Indonesian fermented tempeh slices neatly arranged on a banana leaf with golden morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYHdbf_wFpmvZYtlqVwbwkaJhFqzE-ofETtfh-pnC-IzBrqQe1WE4CSZAu8u_VEWYk6vaAU3-0epoKv4A3Or-HfaKNIElKdXA1VNb5-XsgLVYxDdL_yZaYKXgmbZWTmpFGpobEgFSKAa2AFEp9NIenmRN6_UT74xj8W4JplRBM-ftuiRkNO_7ihljdEE2SHvVoKlgai9D4ItD_Zp55sgLBgS2dZ-DDv7vw7JPwlK7BakgYGr7YPU6ABfrc-Pl9ButlIjahppPHBYeF"/>
+</div>
+<span class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">Tempe</span>
+</div>
+</div>
+</section>
+<!-- Recent Searches -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline text-2xl font-bold italic text-on-surface">Pencarian Terbaru</h2>
+<button class="font-label text-[10px] font-bold uppercase tracking-[0.1em] text-outline hover:text-primary transition-colors">Hapus Semua</button>
+</div>
+<div class="space-y-4">
+<!-- Recent Item 1 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Rendang Daging" data-alt="Traditional Indonesian Beef Rendang in a clay bowl with rich dark coconut sauce and red chilies garnish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_BkO_Xzu3Io7_ljR9nykAO-V0H6KjvE2OhHTyCkzqZS5P7HA6t_bNi62R-_Rn_iRQBO1i1kRmOAQ0sw0IGrkD4nqOQ-Bx9xvt3lSK6zKmQpbC9Mts1mYTpNr9KZY4akKcAUr5iIxjDQars1pdiVVO2_1Qa5H0DVBqKR6snrSH6ERsjB6-Zgo2B63Zu27YcA2Hw4J433srdLIGbLlg-PuMA9MNJjp6hd63nn5XH3co0EBdjKskpmSxW7T7PmrR3sbFySDVhJU9YIG_"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Rendang Daging Sapi</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold">24 Resep Ditemukan</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</div>
+<!-- Recent Item 2 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Nasi Goreng" data-alt="Glistening Indonesian fried rice with a sunny-side-up egg and fresh cucumber slices on a rustic plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr_xdf7lZ9r6xjtib-CMkDYVRuxq6lNz4yA_DPHAPyb3fLoXEh7rI7C5V0JDOUdWfKsoxS3UjtXA_Pvyh5U1CMqDvv6qjA4tOMrfBN_zCyeBQeTN2YmYG7bJ5b4G-Ftam5FOyjmr8EcA1VFS1aO2x7CCZyFday_yx2VtXkGDRaWtUJpm7Sf5H3hqrWVauJuGggipRwYCkbWOtQBW9HPjHvaxviFOxvLhmJjQOvwRaxslMFcdnuTnoq01z3LH8RgcLmCPIsFka7rJqd"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Nasi Goreng Kampung</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold">12 Resep Ditemukan</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</div>
+<!-- Recent Item 3 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Sate Ayam" data-alt="Grilled chicken satay skewers with thick peanut sauce and crispy shallots on a dark ceramic platter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYyYV51i8vwFMrQM3Q8wjQq4R1_qoCkuHtoKzYKdUOrjr9V6KHQXmA91NltRm-QWhX10kbkXNoaDO7p3QrtF-v6jChZW7z8bHh0JcWFzzObgFgn8XjkDEdbjgHfuRNIyq12PncM4Wf1cNj4M1VTGhCYa9viCa4CUf2rngSi2w4T0nGu_Jc08hMLn9NQXx07bSEP2x3AJr6Igrf7rOcoga3a31mZL0ATFJY6r6N7kpt-knd39c4o13BSVxGGjiqj2oC1FlZxnjIIN49"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Sate Ayam Madura</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold">8 Resep Ditemukan</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</div>
+</div>
+</section>
+<!-- Feature Spotlight (Asymmetric Layout) -->
+<section class="mt-16 bg-tertiary-container text-on-tertiary-container rounded-[2rem] p-8 relative overflow-hidden">
+<div class="relative z-10 w-2/3">
+<span class="font-label text-[10px] font-bold uppercase tracking-[0.2em] mb-2 block opacity-80">Rekomendasi Chef</span>
+<h3 class="font-headline text-3xl font-black italic leading-tight mb-4">Eksplorasi Rempah Pilihan Musim Hujan</h3>
+<button class="bg-primary px-6 py-3 rounded-full font-label text-xs font-bold uppercase tracking-widest text-white shadow-lg hover:scale-105 transition-transform active:scale-95">Baca Jurnal</button>
+</div>
+<div class="absolute -right-10 -bottom-10 w-48 h-48 opacity-40">
+<span class="material-symbols-outlined text-[12rem] text-on-tertiary-container">auto_stories</span>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md rounded-full z-50 bg-white/80 dark:bg-stone-900/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+<div class="flex justify-around items-center px-4 py-2">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 p-2 hover:scale-110 transition-transform active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-sans text-[10px] font-bold uppercase tracking-[0.1em]">Home</span>
+</a>
+<!-- Search (Active) -->
+<a class="flex flex-col items-center justify-center bg-orange-800 dark:bg-orange-600 text-white rounded-full w-12 h-12 transition-all duration-300 hover:scale-110 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="search" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="hidden">Search</span>
+</a>
+<!-- Favorites -->
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 p-2 hover:scale-110 transition-transform active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-sans text-[10px] font-bold uppercase tracking-[0.1em]">Favorites</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 p-2 hover:scale-110 transition-transform active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-sans text-[10px] font-bold uppercase tracking-[0.1em]">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

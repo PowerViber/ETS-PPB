@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fbf9f5",
+                    "secondary-fixed": "#a3f69c",
+                    "surface-container-low": "#f5f3ef",
+                    "surface-bright": "#fbf9f5",
+                    "surface-container-highest": "#e4e2de",
+                    "on-primary-container": "#fffbff",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#fffbff",
+                    "tertiary-container": "#8d6e63",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "on-primary-fixed": "#3b0900",
+                    "on-secondary-fixed-variant": "#005312",
+                    "primary-fixed": "#ffdbd1",
+                    "surface-container-high": "#eae8e4",
+                    "tertiary": "#72554b",
+                    "surface-container": "#efeeea",
+                    "outline-variant": "#e3beb5",
+                    "inverse-on-surface": "#f2f0ed",
+                    "primary-container": "#d34011",
+                    "on-tertiary-fixed-variant": "#5b4137",
+                    "tertiary-fixed": "#ffdbce",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#002204",
+                    "inverse-primary": "#ffb5a0",
+                    "surface": "#fbf9f5",
+                    "on-surface-variant": "#5a413a",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#b12d00",
+                    "secondary-fixed-dim": "#88d982",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#217128",
+                    "on-tertiary-fixed": "#2b160f",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#e4beb2",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1b1c1a",
+                    "inverse-surface": "#30312e",
+                    "error-container": "#ffdad6",
+                    "secondary": "#1b6d24",
+                    "surface-dim": "#dbdad6",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e4e2de",
+                    "error": "#ba1a1a",
+                    "outline": "#8f7068",
+                    "secondary-container": "#a0f399",
+                    "primary": "#ad2c00",
+                    "on-primary-fixed-variant": "#872000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif', serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-[#fbf9f5] dark:bg-stone-950 bg-stone-100/50 dark:bg-stone-900/50 backdrop-blur-md docked full-width top-0 sticky z-40">
+<div class="flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="text-orange-800 dark:text-orange-500 hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-serif text-2xl font-black italic tracking-tighter text-orange-900 dark:text-orange-100">Nusantara</h1>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high border-2 border-primary-container/20">
+<img alt="User portrait" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional chef wearing a clean white coat in a warm, dimly lit high-end kitchen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-n4KjNDymhKmMVkoYGIm9qHfq1MyC0HQTfnjkpTurfF6aFsW-0eivLOXgsSU4zkUQJltDoTARYg2PWAsu3tuGFfeVNOI_ioq7oAwoIMYz2y6nLFZe-u2VRuPHdf2o_Dx5FKogCvuaYp8BJtE2JpFmBM2c_ie1AUAs8zcoKj6ZlXboCikqb81RHBeymmxST2AIAKr8X3lyoBw8D5LGyPBNnzhk_tqkvq59-Im1-GEyek99qjm4TUc1U3pySo5Y9sZ3c-fSHn2DnLgF"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-screen-xl mx-auto px-6 pt-8 pb-32">
+<!-- Hero Section / Search Bar -->
+<section class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-secondary mb-3 block">Digital Heritage</span>
+<h2 class="text-5xl md:text-7xl font-headline font-black italic leading-[1.1] text-on-surface">
+                        Simfoni <br/> Rasa <span class="text-primary italic">Nusantara</span>
+</h2>
+</div>
+<div class="w-full md:w-80">
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+</div>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-highest border-none rounded-xl font-body text-on-surface focus:ring-2 focus:ring-primary-container transition-all" placeholder="Cari resep hari ini..." type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories -->
+<nav class="mb-16 overflow-x-auto no-scrollbar py-2">
+<div class="flex gap-4 min-w-max">
+<button class="px-8 py-3 bg-primary-container text-on-primary rounded-full font-label font-bold text-sm tracking-widest transition-all shadow-lg shadow-primary/20">POPUER</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest rounded-full font-label font-bold text-sm tracking-widest transition-all">TRADISIONAL</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest rounded-full font-label font-bold text-sm tracking-widest transition-all">MODERN</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest rounded-full font-label font-bold text-sm tracking-widest transition-all">VEGETARIAN</button>
+</div>
+</nav>
+<!-- Recipe Grid (Editorial Style) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+<!-- Featured Card (Asymmetric) -->
+<article class="md:col-span-8 group relative flex flex-col md:flex-row items-center">
+<div class="w-full md:w-3/5 h-[400px] md:h-[500px] overflow-hidden rounded-xl bg-surface-container-low relative">
+<img alt="Rendang Daging" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Authentic Indonesian Beef Rendang with rich dark brown gravy garnished with lime leaves on a rustic clay plate with dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqquPhp3-g1oe62vwe2d7V3E_0p7ag5glsmI4D2abNENlncVrQMeB2NNk8l7qpl5pQ3PUgOtiCstW5iAx5G_S4N_JDiZzgHw4_b5wqM9bGQMHIh8heWusDrYHVWMiHBgWi6JJzzAlYvKYcdyGewgxcMtEpvgB6XUmUyL0dVo-4QtD3X98O8JExvDuvsivQyNUOdVA5xcGD3Feyc6nB-z4JgY41DmaFqDw_ANugpysFEaaJ2-RAkioz5YTpOsL_wp2dxcvm5ngGDh02"/>
+<div class="absolute top-6 left-6 bg-secondary px-4 py-1.5 rounded-full text-white text-[10px] font-black tracking-widest flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="local_fire_department">local_fire_department</span>
+                        TERPOPULER
+                    </div>
+</div>
+<div class="w-full md:w-2/5 md:-ml-20 mt-[-40px] md:mt-0 z-10 bg-white/80 backdrop-blur-xl p-8 md:p-12 rounded-xl shadow-2xl shadow-on-surface/5">
+<div class="flex items-center gap-4 mb-4">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label font-bold text-sm">4.9</span>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span class="font-label font-bold text-sm">120 Menit</span>
+</div>
+</div>
+<h3 class="text-4xl md:text-5xl font-headline font-bold leading-tight mb-6 text-on-surface">Rendang <br/> Minang Asli</h3>
+<p class="text-on-surface-variant font-body mb-8 leading-relaxed">Warisan leluhur Minangkabau dengan bumbu rempah melimpah yang dimasak perlahan hingga meresap sempurna.</p>
+<button class="bg-primary text-white px-8 py-3 rounded-full font-label font-extrabold text-xs tracking-widest hover:bg-primary-container transition-colors">LIHAT RESEP</button>
+</div>
+</article>
+<!-- Side Cards -->
+<div class="md:col-span-4 flex flex-col gap-12">
+<!-- Recipe Item -->
+<article class="group">
+<div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-surface-container-low">
+<img alt="Gado-gado" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Traditional Indonesian Gado-gado salad with colorful blanched vegetables, tofu, and rich peanut sauce drizzle, warm morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLum8-cNLnrTTci5mEY-uM3PZRx2_p9tN-7YOBfITkFwT29jtRwOKww_qsJJNvag_FQzM6_mqpzy1NW2gmzXZ45CnJdphZhBOKGLF5ksVakJ4iXeXGdabR31lCBnj3XcBgw1fJ1Hf4nDEgK380zbdVOgNJ28UEgkXmEABJeLSiEye5tgqKkD06qWR07Q5cMwfrYdvO21KPd0UH_rtuOOV2tn5D_cUjxc5pZZeosdDlwKqujR2VsLD7LcLv7txT525BLblJ6aIXLK10"/>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-2xl font-headline font-bold text-on-surface group-hover:text-primary transition-colors">Gado-Gado Siram</h4>
+<span class="font-label font-bold text-primary flex items-center gap-1"><span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span> 4.8</span>
+</div>
+<div class="flex items-center gap-4 font-label text-[10px] font-bold tracking-widest text-on-surface-variant">
+<span>25 MENIT</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="text-secondary">PEMULA</span>
+</div>
+</article>
+<!-- Recipe Item -->
+<article class="group">
+<div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-surface-container-low">
+<img alt="Sate Ayam" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Grilled chicken satay skewers over charcoal smoke with peanut sauce and lontong on a banana leaf lined basket, outdoor setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtPQCbh1VB-bvpoDjBt36tGDo23hU7poaqzaHNX-VmgGYca1sSij6-gp_9_hswYQfrKrbsJVyh8jabMZu_oAVfjVKKpaWCx2UDljGL2hfyEgusytZaIzUgKDDY51r6JrB0Sa_jqLCOGgcZYdmEw_qeaPo87O_DTuQkqfkaQN5yPC5PjdCVpS5r7mtqV2Esyxif6hutnRpxfCr6llV0uqUetiM0ws6fyF_l535pbpu1yVAyh-kKCFxwL1gp9iwkMYmVT8HOs1RWMFVC"/>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-2xl font-headline font-bold text-on-surface group-hover:text-primary transition-colors">Sate Madura</h4>
+<span class="font-label font-bold text-primary flex items-center gap-1"><span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span> 4.7</span>
+</div>
+<div class="flex items-center gap-4 font-label text-[10px] font-bold tracking-widest text-on-surface-variant">
+<span>45 MENIT</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="text-secondary">MENENGAH</span>
+</div>
+</article>
+</div>
+<!-- Bento Bottom Section -->
+<div class="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
+<article class="p-8 rounded-xl bg-surface-container-low flex flex-col justify-between border-l-4 border-primary">
+<div>
+<span class="font-label font-bold text-[10px] text-primary tracking-widest mb-2 block">QUICK TIPS</span>
+<h4 class="text-2xl font-headline font-bold mb-4 italic">Rahasia Sambal Bajak yang Gurih</h4>
+<p class="text-on-surface-variant text-sm font-body leading-relaxed">Gunakan terasi yang sudah dibakar untuk aroma yang lebih kuat dan tekstur yang lebih dalam...</p>
+</div>
+<a class="mt-6 text-primary font-bold text-xs font-label flex items-center gap-2 group" href="#">BACA TIPS <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span></a>
+</article>
+<article class="relative md:col-span-2 rounded-xl overflow-hidden h-64 group">
+<img alt="Cooking Class" class="w-full h-full object-cover" data-alt="Modern bright kitchen island with fresh Indonesian spices like turmeric, galangal, and lemongrass arranged artistically on a wooden board" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIgo9MC-D3gSY3ztkqFRJ4_u1RmKz3QOxrjhUvlmN1K2kpXz2tSgf1-nVYP58_7T8Tx8uD9qnJQMNq3vPHFfV4nbns3cDb4zqNZNA7BHm-Nr-2-4gnWZ-U9_L4WX9-NqkzXfAxNPtg_PigsfN3wFjWW8zuml34iuCyl8_h6Kl3Kngd1kxTazlhiIEsyo59NmHRQY-x_cIIdwlvogJifJWJ84phLS7RFhbLx3Jway2n_F07dzhTIohNYA1TmOazcKwb8O5zTFH6MWKx"/>
+<div class="absolute inset-0 bg-gradient-to-r from-on-surface/80 to-transparent flex flex-col justify-center p-12">
+<h4 class="text-3xl font-headline font-bold text-white mb-2">Kelas Memasak <br/> Nusantara</h4>
+<p class="text-white/80 max-w-xs text-sm mb-6">Belajar langsung dari Chef berpengalaman dalam mengolah bumbu dasar merah, putih, dan kuning.</p>
+<button class="w-fit bg-secondary text-white px-6 py-2 rounded-full font-label font-bold text-[10px] tracking-widest">DAFTAR KELAS</button>
+</div>
+</article>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md rounded-full z-50 bg-white/80 dark:bg-stone-900/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+<div class="flex justify-around items-center px-4 py-2">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-orange-800 dark:bg-orange-600 text-white rounded-full w-12 h-12 transition-all duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+</a>
+<!-- Search -->
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 p-2 hover:scale-110 transition-transform active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-sans text-[10px] font-bold uppercase tracking-[0.1em]">Search</span>
+</a>
+<!-- Favorites -->
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 p-2 hover:scale-110 transition-transform active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-sans text-[10px] font-bold uppercase tracking-[0.1em]">Favorites</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 p-2 hover:scale-110 transition-transform active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-sans text-[10px] font-bold uppercase tracking-[0.1em]">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Contextual FAB (Hidden on scroll or specific screens as per prompt logic, here shown for Home) -->
+<div class="fixed bottom-24 right-8 z-40 md:hidden">
+<button class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white shadow-xl active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</body></html>
