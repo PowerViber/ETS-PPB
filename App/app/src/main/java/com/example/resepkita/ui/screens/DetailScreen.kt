@@ -215,7 +215,7 @@ fun IngredientItem(text: String) {
 
 @Composable
 fun InstructionStep(number: String, title: String, desc: String) {
-    Row(crossAxisAlignment = Alignment.Top) {
+    Row(verticalAlignment = Alignment.Top) {
         Surface(
             shape = CircleShape,
             color = if (number == "01") Color(0xFFffdbd1) else surfaceContainerHighest,
