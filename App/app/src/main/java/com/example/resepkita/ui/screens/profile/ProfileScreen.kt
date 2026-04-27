@@ -100,7 +100,7 @@ private fun ProfileHero() {
         Column(modifier = Modifier.padding(24.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 AsyncImage(
-                    model = "https://lh3.googleusercontent.com/aida-public/AB6AXuDX3yUSsAdSt2v5k_E85NHWbnnWj2peK7IdJcPWONAMjDjmB2OJLkLAwghRBXSj3raqeQTBpOny6q9aAyzyWRN488yI-whosdG0KDLu8rPL41mf7iTKlVCofZ5kHubjNjQOZyWKfW-5Q_EG5Hb_gGH_DvYPsXbuUZJDa5pEcCtkwR9PI_bKFoB49L3fqiYvxxeVpSX89B7Nxav-0-U04Kz7SKEaA5fWjC3qkJvm2tW-LOj_1ogGpEN7n30KzsELUDeYT1GAr34SQrcH",
+                    model = "https://lh3.googleusercontent.com/aida-public/AB6AXuAHhCRCCo7MsNqHhDv_pIc4oxVX912gxf2MVrLKWg_I0V59oSDOd6jEYPv3POeGOz6oWanxpOeLVnyIvJJvoo06CDaiU-vMMMlQEOflwphJdtPSKSbrJKt_52ZYDEL-4tVUvIR0QiZOI8MDNtRPJ_89VEUwP_QKW-1qlqJtC_wVCo8TsKsp6-LTde2ZFDqVtYDww5NvdeUIPZLsR5ZS3ByLDQZm4QDqv8b5bhBXvv72tGTS1taFrDTWCRuwLiKYmy8qNxwGnU6Xa8PE",
                     contentDescription = "Profile photo",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier

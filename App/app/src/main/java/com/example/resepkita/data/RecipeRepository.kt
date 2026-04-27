@@ -22,7 +22,7 @@ object RecipeRepository {
         Recipe(
             id = "rendang-minang",
             name = "Rendang Minang Asli",
-            imageUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuDqquPhp3-g1oe62vwe2d7V3E_0p7ag5glsmI4D2abNENlncVrQMeB2NNk8l7qpl5pQ3PUgOtiCstW5iAx5G_S4N_JDiZzgHw4_b5wqM9bGQMHIh8heWusDrYHVWMiHBgWi6JJzzAlYvKYcdyGewgxcMtEpvgB6XUmUyL0dVo-4QtD3X98O8JExvDuvsivQyNUOdVA5xcGD3Feyc6nB-z4JgY41DmaFqDw_ANugpysFEaaJ2-RAkioz5YTpOsL_wp2dxcvm5ngGDh02",
+            imageUrl = "file:///android_asset/photos/rendang-minang.png",
             description = "Warisan leluhur Minangkabau dengan daging sapi, santan, dan bumbu rempah yang dimasak perlahan hingga pekat.",
             ingredients = listOf(
                 "1 kg daging sapi, potong kotak",
