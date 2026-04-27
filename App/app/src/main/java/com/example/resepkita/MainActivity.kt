@@ -16,6 +16,8 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,14 +27,18 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.resepkita.data.CookingPhoto
+import com.example.resepkita.data.RecipeRepository
 import com.example.resepkita.ui.screens.DetailScreen
 import com.example.resepkita.ui.screens.FavoritesScreen
 import com.example.resepkita.ui.screens.HomeScreen
-import com.example.resepkita.ui.screens.ProfileScreen
+import com.example.resepkita.ui.screens.profile.ProfileScreen
 import com.example.resepkita.ui.screens.SearchScreen
 import com.example.resepkita.ui.theme.ResepKitaTheme
 
@@ -53,47 +59,103 @@ fun MainApp() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val favoriteRecipeIds = remember {
+        mutableStateListOf(*RecipeRepository.recipes.filter { it.isFavorite }.map { it.id }.toTypedArray())
+    }
+    val plannedRecipeIds = remember { mutableStateListOf<String>() }
+    val cookingPhotos = remember { mutableStateListOf<CookingPhoto>() }
 
     Box(modifier = Modifier.fillMaxSize()) {
         NavHost(navController = navController, startDestination = "home") {
             composable("home") {
                 HomeScreen(
-                    onNavigateToDetail = { navController.navigate("detail") },
-                    onNavigateToSearch = { navController.navigate("search") }
+                    onNavigateToDetail = { recipeId -> navController.navigate("detail/$recipeId") },
+                    onNavigateToSearch = { navController.navigateRootTab("search") }
                 )
             }
             composable("search") {
-                SearchScreen()
+                SearchScreen(onNavigateToDetail = { recipeId -> navController.navigate("detail/$recipeId") })
             }
-            composable("detail") {
-                DetailScreen(onNavigateBack = { navController.popBackStack() })
+            composable(
+                route = "detail/{recipeId}",
+                arguments = listOf(navArgument("recipeId") { type = NavType.StringType })
+            ) { backStackEntry ->
+                DetailScreen(
+                    recipeId = backStackEntry.arguments?.getString("recipeId"),
+                    favoriteRecipeIds = favoriteRecipeIds,
+                    plannedRecipeIds = plannedRecipeIds,
+                    cookingPhotos = cookingPhotos,
+                    onToggleFavorite = { recipeId ->
+                        if (favoriteRecipeIds.contains(recipeId)) {
+                            favoriteRecipeIds.remove(recipeId)
+                        } else {
+                            favoriteRecipeIds.add(recipeId)
+                        }
+                    },
+                    onAddCookingPlan = { recipeId ->
+                        if (!plannedRecipeIds.contains(recipeId)) {
+                            plannedRecipeIds.add(recipeId)
+                        }
+                    },
+                    onRemoveCookingPlan = { recipeId ->
+                        plannedRecipeIds.remove(recipeId)
+                    },
+                    onCookingPhotoCaptured = { recipeId, bitmap ->
+                        val isDuplicate = cookingPhotos.any { it.bitmap.sameAs(bitmap) }
+                        if (!isDuplicate) {
+                            cookingPhotos.add(
+                                CookingPhoto(
+                                    id = System.nanoTime(),
+                                    recipeId = recipeId,
+                                    bitmap = bitmap
+                                )
+                            )
+                        }
+                        plannedRecipeIds.remove(recipeId)
+                    },
+                    onCookingFinished = { },
+                    onNavigateBack = { navController.popBackStack() }
+                )
             }
             composable("favorites") {
-                FavoritesScreen(onNavigateToDetail = { navController.navigate("detail") })
+                FavoritesScreen(
+                    favoriteRecipeIds = favoriteRecipeIds,
+                    onNavigateToDetail = { recipeId -> navController.navigate("detail/$recipeId") }
+                )
             }
             composable("profile") {
-                ProfileScreen()
+                ProfileScreen(
+                    plannedRecipeCount = plannedRecipeIds.size,
+                    cookedRecipeIds = cookingPhotos.map { it.recipeId },
+                    favoriteRecipeIds = favoriteRecipeIds
+                )
             }
         }
 
         // Show Glass Bottom Navigation Bar only if we are not on the detail screen
-        if (currentRoute != "detail") {
+        if (currentRoute?.startsWith("detail") != true) {
             GlassBottomNavigation(
                 currentRoute = currentRoute ?: "home",
                 onNavigate = { route ->
                     if (route != currentRoute) {
-                        navController.navigate(route) {
-                            popUpTo(navController.graph.startDestinationId) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
+                        navController.navigateRootTab(route)
                     }
                 },
                 modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 24.dp)
             )
         }
+    }
+}
+
+private fun NavController.navigateRootTab(route: String) {
+    if (route == "home" && popBackStack("home", inclusive = false)) return
+
+    navigate(route) {
+        popUpTo("home") {
+            saveState = false
+        }
+        launchSingleTop = true
+        restoreState = false
     }
 }
 

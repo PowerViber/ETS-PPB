@@ -1,4 +1,4 @@
-package com.example.resepkita.ui.screens
+package com.example.resepkita.ui.screens.profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,15 +28,12 @@ import androidx.compose.material.icons.filled.RestaurantMenu
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,37 +46,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.example.resepkita.data.RecipeRepository
+import com.example.resepkita.ui.components.ResepKitaTopBar
 import com.example.resepkita.ui.theme.md_theme_light_outline
 import com.example.resepkita.ui.theme.surfaceContainerHigh
 import com.example.resepkita.ui.theme.surfaceContainerHighest
 import com.example.resepkita.ui.theme.surfaceContainerLow
 import com.example.resepkita.ui.theme.surfaceContainerLowest
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(
+    plannedRecipeCount: Int,
+    cookedRecipeIds: List<String>,
+    favoriteRecipeIds: List<String>
+) {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "Nusantara",
-                        style = MaterialTheme.typography.headlineSmall.copy(
-                            fontStyle = FontStyle.Italic,
-                            fontWeight = FontWeight.Black,
-                            color = Color(0xFF7c2d12)
-                        )
-                    )
-                },
-                actions = {
-                    IconButton(onClick = { }) {
-                        Icon(Icons.Default.Settings, contentDescription = "Settings", tint = Color(0xFF9a3412))
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)
-                )
-            )
+            ResepKitaTopBar()
         },
         containerColor = MaterialTheme.colorScheme.background
     ) { innerPadding ->
@@ -93,11 +76,15 @@ fun ProfileScreen() {
             Spacer(modifier = Modifier.height(8.dp))
             ProfileHero()
             Spacer(modifier = Modifier.height(28.dp))
-            CookingStats()
+            CookingStats(
+                plannedRecipeCount = plannedRecipeCount,
+                cookedCount = cookedRecipeIds.size,
+                favoriteRecipeCount = favoriteRecipeIds.size
+            )
             Spacer(modifier = Modifier.height(32.dp))
-            TasteProfile()
+            TasteProfile(cookedRecipeIds = cookedRecipeIds)
             Spacer(modifier = Modifier.height(32.dp))
-            ProfileMenu()
+            // ProfileMenu(plannedRecipeCount = plannedRecipeCount)
             Spacer(modifier = Modifier.height(120.dp))
         }
     }
@@ -131,7 +118,7 @@ private fun ProfileHero() {
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
-                        text = "Arian",
+                        text = "Dzaky",
                         style = MaterialTheme.typography.displaySmall.copy(fontStyle = FontStyle.Italic)
                     )
                     Text(
@@ -140,15 +127,15 @@ private fun ProfileHero() {
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-                Surface(
-                    color = MaterialTheme.colorScheme.primary,
-                    shape = CircleShape,
-                    modifier = Modifier.size(44.dp)
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Icon(Icons.Default.Edit, contentDescription = "Edit profile", tint = Color.White, modifier = Modifier.size(20.dp))
-                    }
-                }
+                // Surface(
+                //     color = MaterialTheme.colorScheme.primary,
+                //     shape = CircleShape,
+                //     modifier = Modifier.size(44.dp)
+                // ) {
+                //     Box(contentAlignment = Alignment.Center) {
+                //         Icon(Icons.Default.Edit, contentDescription = "Edit profile", tint = Color.White, modifier = Modifier.size(20.dp))
+                //     }
+                // }
             }
             Spacer(modifier = Modifier.height(24.dp))
             Surface(
@@ -157,7 +144,7 @@ private fun ProfileHero() {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = "Sedang mendalami masakan Minang, sambal rumahan, dan resep cepat untuk hari kuliah yang padat.",
+                    text = "Untung udah ga beda agama",
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(18.dp)
@@ -168,11 +155,11 @@ private fun ProfileHero() {
 }
 
 @Composable
-private fun CookingStats() {
+private fun CookingStats(plannedRecipeCount: Int, cookedCount: Int, favoriteRecipeCount: Int) {
     Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
-        ProfileStat("24", "Dimasak", Icons.Default.RestaurantMenu, Modifier.weight(1f))
-        ProfileStat("12", "Favorit", Icons.Default.Favorite, Modifier.weight(1f))
-        ProfileStat("8", "Ulasan", Icons.Default.Star, Modifier.weight(1f))
+        ProfileStat(plannedRecipeCount.toString(), "Rencana", Icons.Default.RestaurantMenu, Modifier.weight(1f))
+        ProfileStat(favoriteRecipeCount.toString(), "Favorit", Icons.Default.Favorite, Modifier.weight(1f))
+        ProfileStat(cookedCount.toString(), "Masakan", Icons.Default.Star, Modifier.weight(1f))
     }
 }
 
@@ -204,7 +191,13 @@ private fun ProfileStat(value: String, label: String, icon: ImageVector, modifie
 }
 
 @Composable
-private fun TasteProfile() {
+private fun TasteProfile(cookedRecipeIds: List<String>) {
+    val cookedRecipes = cookedRecipeIds.map { RecipeRepository.findById(it) }
+    val cookedCount = cookedRecipes.size
+    val beginnerCount = cookedRecipes.count { it.difficulty == "Pemula" }
+    val mediumCount = cookedRecipes.count { it.difficulty == "Menengah" }
+    val advancedCount = cookedRecipes.count { it.difficulty == "Mahir" }
+
     Surface(
         color = Color(0xFF8d6e63),
         shape = RoundedCornerShape(28.dp),
@@ -212,36 +205,36 @@ private fun TasteProfile() {
     ) {
         Column(modifier = Modifier.padding(24.dp)) {
             Text(
-                text = "PROFIL RASA",
+                text = "MASAKAN SELESAI",
                 style = MaterialTheme.typography.labelSmall,
                 color = Color.White.copy(alpha = 0.82f),
                 letterSpacing = 2.sp
             )
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = "Pedas, Gurih, Berempah",
+                text = if (cookedCount == 0) "Belum Ada Masakan" else "$cookedCount Foto Masakan",
                 style = MaterialTheme.typography.headlineMedium.copy(
                     fontStyle = FontStyle.Italic,
                     color = Color.White
                 )
             )
             Spacer(modifier = Modifier.height(18.dp))
-            TasteRow("Sambal", 0.86f)
-            TasteRow("Rempah", 0.74f)
-            TasteRow("Sayur Segar", 0.46f)
+            TasteRow("Pemula", progressFor(beginnerCount, cookedCount), beginnerCount)
+            TasteRow("Menengah", progressFor(mediumCount, cookedCount), mediumCount)
+            TasteRow("Mahir", progressFor(advancedCount, cookedCount), advancedCount)
         }
     }
 }
 
 @Composable
-private fun TasteRow(label: String, progress: Float) {
+private fun TasteRow(label: String, progress: Float, count: Int) {
     Column(modifier = Modifier.padding(vertical = 7.dp)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(label, style = MaterialTheme.typography.labelMedium, color = Color.White)
-            Text("${(progress * 100).toInt()}%", style = MaterialTheme.typography.labelSmall, color = Color.White.copy(alpha = 0.78f))
+            Text("$count foto", style = MaterialTheme.typography.labelSmall, color = Color.White.copy(alpha = 0.78f))
         }
         Spacer(modifier = Modifier.height(8.dp))
         Box(
@@ -262,40 +255,45 @@ private fun TasteRow(label: String, progress: Float) {
     }
 }
 
-@Composable
-private fun ProfileMenu() {
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        ProfileMenuItem(Icons.Default.Schedule, "Rencana Masak", "3 resep menunggu minggu ini")
-        ProfileMenuItem(Icons.Default.LocalDining, "Preferensi Bahan", "Ayam, tempe, cabai, daun jeruk")
-        ProfileMenuItem(Icons.Default.Notifications, "Pengingat Dapur", "Aktif untuk jadwal makan malam")
-        ProfileMenuItem(Icons.Default.Person, "Akun & Privasi", "Kelola profil ResepKita")
-    }
+private fun progressFor(count: Int, total: Int): Float {
+    if (total == 0) return 0f
+    return count.toFloat() / total.toFloat()
 }
 
-@Composable
-private fun ProfileMenuItem(icon: ImageVector, title: String, subtitle: String) {
-    Surface(
-        color = surfaceContainerLowest,
-        shape = RoundedCornerShape(18.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { }
-    ) {
-        Row(
-            modifier = Modifier.padding(18.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Surface(color = surfaceContainerHigh, shape = CircleShape, modifier = Modifier.size(44.dp)) {
-                Box(contentAlignment = Alignment.Center) {
-                    Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(21.dp))
-                }
-            }
-            Spacer(modifier = Modifier.width(16.dp))
-            Column(modifier = Modifier.weight(1f)) {
-                Text(title, style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold))
-                Text(subtitle, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            }
-            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = md_theme_light_outline, modifier = Modifier.size(20.dp))
-        }
-    }
-}
+// @Composable
+// private fun ProfileMenu(plannedRecipeCount: Int) {
+//     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+//         ProfileMenuItem(Icons.Default.Schedule, "Rencana Masak", "$plannedRecipeCount resep menunggu minggu ini")
+//         ProfileMenuItem(Icons.Default.LocalDining, "Preferensi Bahan", "Ayam, tempe, cabai, daun jeruk")
+//         ProfileMenuItem(Icons.Default.Notifications, "Pengingat Dapur", "Aktif untuk jadwal makan malam")
+//         ProfileMenuItem(Icons.Default.Person, "Akun & Privasi", "Kelola profil ResepKita")
+//     }
+// }
+
+// @Composable
+// private fun ProfileMenuItem(icon: ImageVector, title: String, subtitle: String) {
+//     Surface(
+//         color = surfaceContainerLowest,
+//         shape = RoundedCornerShape(18.dp),
+//         modifier = Modifier
+//             .fillMaxWidth()
+//             .clickable { }
+//     ) {
+//         Row(
+//             modifier = Modifier.padding(18.dp),
+//             verticalAlignment = Alignment.CenterVertically
+//         ) {
+//             Surface(color = surfaceContainerHigh, shape = CircleShape, modifier = Modifier.size(44.dp)) {
+//                 Box(contentAlignment = Alignment.Center) {
+//                     Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(21.dp))
+//                 }
+//             }
+//             Spacer(modifier = Modifier.width(16.dp))
+//             Column(modifier = Modifier.weight(1f)) {
+//                 Text(title, style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold))
+//                 Text(subtitle, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+//             }
+//             Icon(Icons.Default.ChevronRight, contentDescription = null, tint = md_theme_light_outline, modifier = Modifier.size(20.dp))
+//         }
+//     }
+// }

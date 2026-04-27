@@ -1,41 +1,92 @@
 package com.example.resepkita.ui.screens
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Share
-import androidx.compose.material3.*
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.example.resepkita.ui.theme.*
+import com.example.resepkita.data.CookingPhoto
+import com.example.resepkita.data.RecipeRepository
+import com.example.resepkita.ui.components.ResepKitaTopBar
+import com.example.resepkita.ui.theme.surfaceContainerHighest
+import com.example.resepkita.ui.theme.surfaceContainerLow
+import com.example.resepkita.ui.theme.surfaceContainerLowest
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(onNavigateBack: () -> Unit) {
+fun DetailScreen(
+    recipeId: String?,
+    favoriteRecipeIds: List<String>,
+    plannedRecipeIds: List<String>,
+    cookingPhotos: List<CookingPhoto>,
+    onToggleFavorite: (String) -> Unit,
+    onAddCookingPlan: (String) -> Unit,
+    onRemoveCookingPlan: (String) -> Unit,
+    onCookingPhotoCaptured: (String, android.graphics.Bitmap) -> Unit,
+    onCookingFinished: () -> Unit,
+    onNavigateBack: () -> Unit
+) {
+    val recipe = RecipeRepository.findById(recipeId)
+    val isFavorite = favoriteRecipeIds.contains(recipe.id)
+    val isPlanned = plannedRecipeIds.contains(recipe.id)
+    val recipePhotos = cookingPhotos.filter { it.recipeId == recipe.id }
+    val checkedIngredients = remember(recipe.id) { mutableStateListOf<String>() }
+    val cameraLauncher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
+        if (bitmap != null) {
+            onCookingPhotoCaptured(recipe.id, bitmap)
+            checkedIngredients.clear()
+            onCookingFinished()
+        }
+    }
+
     Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
-            
-            // Hero Image
             Box(modifier = Modifier.fillMaxWidth().height(400.dp)) {
                 AsyncImage(
-                    model = "https://lh3.googleusercontent.com/aida-public/AB6AXuAACknOzwT_qQMaRIbWoHapLl7cZGk18kUaTObwSFRdx00nNSusVefrF6hJVOop4gKeDGrcJ_EYwUkfcU4yrYSxUk1dtAoSNPfCgJEgcC59MZttb1McBsre3DlOPccMATk_DGsgnwoArI8aaYin_q6iLQTm5trzglGyzPQrQ64uHh-cJnvdEUg7kGtqNefjFMWeGOxPO7Bg2yL-1BFAkNywnc0B4SVKQwVAe1UA5dvFSGX8RIqBYHieb9JRWuoQndMl4wL0haq1m59m",
-                    contentDescription = "Rendang Daging Sapi",
+                    model = recipe.imageUrl,
+                    contentDescription = recipe.name,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize()
                 )
@@ -51,7 +102,6 @@ fun DetailScreen(onNavigateBack: () -> Unit) {
                 )
             }
 
-            // Content Body
             Column(modifier = Modifier.padding(horizontal = 24.dp).offset(y = (-40).dp)) {
                 Surface(
                     shape = RoundedCornerShape(24.dp),
@@ -60,124 +110,163 @@ fun DetailScreen(onNavigateBack: () -> Unit) {
                 ) {
                     Column(modifier = Modifier.padding(24.dp)) {
                         Text(
-                            text = "MINANGKABAU HERITAGE",
+                            text = "${recipe.region.uppercase()} HERITAGE",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.secondary,
                             letterSpacing = 2.sp
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Rendang Daging Sapi Padang",
+                            text = recipe.name,
                             style = MaterialTheme.typography.displayMedium.copy(fontStyle = FontStyle.Italic)
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "A slow-cooked masterpiece of beef braised in coconut milk and a rich spice paste until the liquid evaporates and the meat turns dark, tender, and intensely flavorful.",
+                            text = recipe.description,
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
-                        
+
                         Spacer(modifier = Modifier.height(24.dp))
 
-                        // Stats Grid
-                        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                            StatCard("Prep Time", "4 Hours")
-                            StatCard("Servings", "6 Portions")
-                            StatCard("Complexity", "Artisan")
+                        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            StatCard("Waktu", recipe.time)
+                            StatCard("Porsi", recipe.servings)
+                            StatCard("Level", recipe.difficulty)
                         }
 
                         Spacer(modifier = Modifier.height(32.dp))
 
-                        // Tabs Mock
-                        Row {
-                            Column {
-                                Text(
-                                    "Bahan-bahan",
-                                    style = MaterialTheme.typography.headlineSmall.copy(fontStyle = FontStyle.Italic),
-                                    color = MaterialTheme.colorScheme.primary
-                                )
-                                Spacer(modifier = Modifier.height(8.dp))
-                                Box(modifier = Modifier.height(4.dp).width(120.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
-                            }
-                            Spacer(modifier = Modifier.width(32.dp))
-                            Text(
-                                "Cara Pembuatan",
-                                style = MaterialTheme.typography.headlineSmall.copy(fontStyle = FontStyle.Italic),
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                        Text(
+                            "Bahan-bahan",
+                            style = MaterialTheme.typography.headlineSmall.copy(fontStyle = FontStyle.Italic),
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Box(modifier = Modifier.height(4.dp).width(120.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
+
+                        Spacer(modifier = Modifier.height(16.dp))
+                        recipe.ingredients.forEach { ingredient ->
+                            IngredientItem(
+                                text = ingredient,
+                                checked = checkedIngredients.contains(ingredient),
+                                onCheckedChange = { isChecked ->
+                                    if (isChecked) {
+                                        if (!checkedIngredients.contains(ingredient)) {
+                                            checkedIngredients.add(ingredient)
+                                        }
+                                    } else {
+                                        checkedIngredients.remove(ingredient)
+                                    }
+                                }
                             )
                         }
 
-                        Spacer(modifier = Modifier.height(32.dp))
-
-                        // The Base Ingredients
-                        Text("THE BASE", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f), letterSpacing = 2.sp)
-                        Spacer(modifier = Modifier.height(16.dp))
-                        IngredientItem("1kg Beef Shank, cut into cubes")
-                        IngredientItem("3 Liters thick coconut milk")
-                        IngredientItem("4 stalks Lemongrass, bruised")
-
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        // The Spiced Paste
-                        Text("THE SPICED PASTE (BUMBU)", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f), letterSpacing = 2.sp)
-                        Spacer(modifier = Modifier.height(16.dp))
-                        IngredientItem("100g Shallots & 50g Garlic")
-                        IngredientItem("250g Red Chilies (mix of curly and bird's eye)")
-                        IngredientItem("50g Galangal & 20g Ginger")
-
                         Spacer(modifier = Modifier.height(40.dp))
 
-                        // Instructions
-                        InstructionStep("01", "The Infusion Begins", "In a large heavy-bottomed pot or wok, combine the coconut milk, spice paste, lemongrass...")
-                        Spacer(modifier = Modifier.height(24.dp))
-                        InstructionStep("02", "Slow Reduction", "Add the beef cubes. Reduce heat to low and simmer, stirring occasionally. This is the patience phase...")
-                        
-                        Spacer(modifier = Modifier.height(120.dp))
+                        Text(
+                            "Cara Pembuatan",
+                            style = MaterialTheme.typography.headlineSmall.copy(fontStyle = FontStyle.Italic),
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Box(modifier = Modifier.height(4.dp).width(120.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
+
+                        Spacer(modifier = Modifier.height(18.dp))
+                        recipe.steps.forEachIndexed { index, step ->
+                            InstructionStep(
+                                number = (index + 1).toString().padStart(2, '0'),
+                                title = step.substringBefore(".").ifBlank { "Langkah ${index + 1}" },
+                                desc = step
+                            )
+                            Spacer(modifier = Modifier.height(24.dp))
+                        }
+
+                        if (recipePhotos.isNotEmpty()) {
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(
+                                text = "FOTO HASIL MASAK",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
+                                letterSpacing = 2.sp
+                            )
+                            Spacer(modifier = Modifier.height(12.dp))
+                            recipePhotos.forEachIndexed { index, photo ->
+                                Surface(
+                                    shape = RoundedCornerShape(20.dp),
+                                    color = surfaceContainerLow,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(220.dp)
+                                ) {
+                                    Image(
+                                        bitmap = photo.bitmap.asImageBitmap(),
+                                        contentDescription = "Foto hasil masak ${recipe.name} ${index + 1}",
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier.fillMaxSize()
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(12.dp))
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(96.dp))
                     }
                 }
             }
         }
 
-        // Custom Top App Bar overlay
-        TopAppBar(
-            title = {
-                Text(
-                    text = "Nusantara",
-                    style = MaterialTheme.typography.headlineSmall.copy(
-                        fontStyle = FontStyle.Italic,
-                        fontWeight = FontWeight.Black,
-                        color = Color(0xFF7c2d12) // text-orange-900
-                    )
-                )
-            },
-            navigationIcon = {
-                IconButton(onClick = onNavigateBack) {
-                    Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back", tint = Color(0xFF9a3412))
-                }
-            },
+        ResepKitaTopBar(
+            showBackButton = true,
+            onNavigateBack = onNavigateBack,
+            containerAlpha = 0.5f,
             actions = {
-                IconButton(onClick = { }) {
-                    Icon(imageVector = Icons.Default.Favorite, contentDescription = "Favorite", tint = Color(0xFF9a3412))
-                }
-                IconButton(onClick = { }) {
-                    Icon(imageVector = Icons.Default.Share, contentDescription = "Share", tint = Color(0xFF9a3412))
+                IconButton(onClick = { onToggleFavorite(recipe.id) }) {
+                    Icon(
+                        imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = if (isFavorite) "Remove from favorites" else "Add to favorites",
+                        tint = Color(0xFF9a3412)
+                    )
                 }
             },
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
-            ),
             modifier = Modifier.align(Alignment.TopCenter)
         )
 
-        // FAB
-        ExtendedFloatingActionButton(
-            onClick = { /* Start cooking */ },
-            modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 32.dp),
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            elevation = FloatingActionButtonDefaults.elevation(8.dp)
-        ) {
-            Text("MULAI MEMASAK", style = MaterialTheme.typography.labelMedium, letterSpacing = 1.sp)
+        if (isPlanned) {
+            Surface(
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.94f),
+                shape = CircleShape,
+                shadowElevation = 8.dp,
+                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 32.dp)
+            ) {
+                Row(
+                    modifier = Modifier.padding(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Button(
+                        onClick = { cameraLauncher.launch(null) },
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                    ) {
+                        Text("SELESAI MEMASAK", style = MaterialTheme.typography.labelSmall, letterSpacing = 1.sp)
+                    }
+                    Button(
+                        onClick = { onRemoveCookingPlan(recipe.id) },
+                        colors = ButtonDefaults.buttonColors(containerColor = surfaceContainerHighest, contentColor = MaterialTheme.colorScheme.onSurfaceVariant)
+                    ) {
+                        Text("HAPUS RENCANA", style = MaterialTheme.typography.labelSmall, letterSpacing = 1.sp)
+                    }
+                }
+            }
+        } else {
+            ExtendedFloatingActionButton(
+                onClick = { onAddCookingPlan(recipe.id) },
+                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 32.dp),
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                elevation = FloatingActionButtonDefaults.elevation(8.dp)
+            ) {
+                Text("MULAI MEMASAK", style = MaterialTheme.typography.labelMedium, letterSpacing = 1.sp)
+            }
         }
     }
 }
@@ -188,7 +277,7 @@ fun StatCard(label: String, value: String) {
         color = surfaceContainerLow,
         shape = CircleShape
     ) {
-        Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+        Column(modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp)) {
             Text(label, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Text(value, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
         }
@@ -196,7 +285,11 @@ fun StatCard(label: String, value: String) {
 }
 
 @Composable
-fun IngredientItem(text: String) {
+fun IngredientItem(
+    text: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
     Surface(
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
         color = surfaceContainerLowest,
@@ -206,7 +299,11 @@ fun IngredientItem(text: String) {
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Checkbox(checked = false, onCheckedChange = { }, colors = CheckboxDefaults.colors(checkedColor = MaterialTheme.colorScheme.primary))
+            Checkbox(
+                checked = checked,
+                onCheckedChange = onCheckedChange,
+                colors = CheckboxDefaults.colors(checkedColor = MaterialTheme.colorScheme.primary)
+            )
             Spacer(modifier = Modifier.width(16.dp))
             Text(text, style = MaterialTheme.typography.bodyMedium)
         }
