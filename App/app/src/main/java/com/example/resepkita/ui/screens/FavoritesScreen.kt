@@ -21,16 +21,13 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -106,29 +103,6 @@ fun FavoritesScreen(onNavigateToDetail: () -> Unit) {
                             color = Color(0xFF7c2d12)
                         )
                     )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { }) {
-                        Icon(Icons.Default.Menu, contentDescription = "Menu", tint = Color(0xFF9a3412))
-                    }
-                },
-                actions = {
-                    Surface(
-                        color = surfaceContainerHigh,
-                        shape = CircleShape,
-                        modifier = Modifier
-                            .padding(end = 16.dp)
-                            .size(40.dp)
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Icon(
-                                Icons.Default.Bookmark,
-                                contentDescription = "Saved",
-                                tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(20.dp)
-                            )
-                        }
-                    }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)

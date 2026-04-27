@@ -44,23 +44,6 @@ fun HomeScreen(
                         )
                     )
                 },
-                navigationIcon = {
-                    IconButton(onClick = { /* Handle Menu */ }) {
-                        Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu", tint = Color(0xFF9a3412))
-                    }
-                },
-                actions = {
-                    AsyncImage(
-                        model = "https://lh3.googleusercontent.com/aida-public/AB6AXuB-n4KjNDymhKmMVkoYGIm9qHfq1MyC0HQTfnjkpTurfF6aFsW-0eivLOXgsSU4zkUQJltDoTARYg2PWAsu3tuGFfeVNOI_ioq7oAwoIMYz2y6nLFZe-u2VRuPHdf2o_Dx5FKogCvuaYp8BJtE2JpFmBM2c_ie1AUAs8zcoKj6ZlXboCikqb81RHBeymmxST2AIAKr8X3lyoBw8D5LGyPBNnzhk_tqkvq59-Im1-GEyek99qjm4TUc1U3pySo5Y9sZ3c-fSHn2DnLgF",
-                        contentDescription = "Profile",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .padding(end = 16.dp)
-                            .size(40.dp)
-                            .clip(CircleShape)
-                            .background(surfaceContainerHigh)
-                    )
-                },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)
                 ),

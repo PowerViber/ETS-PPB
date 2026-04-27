@@ -22,7 +22,6 @@ import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.LocalDining
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.RestaurantMenu
@@ -71,11 +70,6 @@ fun ProfileScreen() {
                             color = Color(0xFF7c2d12)
                         )
                     )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { }) {
-                        Icon(Icons.Default.Menu, contentDescription = "Menu", tint = Color(0xFF9a3412))
-                    }
                 },
                 actions = {
                     IconButton(onClick = { }) {

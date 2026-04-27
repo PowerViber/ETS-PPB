@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForwardIos
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -40,23 +39,6 @@ fun SearchScreen() {
                             fontWeight = FontWeight.Black,
                             color = Color(0xFF7c2d12) // text-orange-900 
                         )
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { /* Handle Menu */ }) {
-                        Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu", tint = Color(0xFF9a3412))
-                    }
-                },
-                actions = {
-                    AsyncImage(
-                        model = "https://lh3.googleusercontent.com/aida-public/AB6AXuDX3yUSsAdSt2v5k_E85NHWbnnWj2peK7IdJcPWONAMjDjmB2OJLkLAwghRBXSj3raqeQTBpOny6q9aAyzyWRN488yI-whosdG0KDLu8rPL41mf7iTKlVCofZ5kHubjNjQOZyWKfW-5Q_EG5Hb_gGH_DvYPsXbuUZJDa5pEcCtkwR9PI_bKFoB49L3fqiYvxxeVpSX89B7Nxav-0-U04Kz7SKEaA5fWjC3qkJvm2tW-LOj_1ogGpEN7n30KzsELUDeYT1GAr34SQrcH",
-                        contentDescription = "Profile",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .padding(end = 16.dp)
-                            .size(40.dp)
-                            .clip(CircleShape)
-                            .background(surfaceContainerHigh)
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
