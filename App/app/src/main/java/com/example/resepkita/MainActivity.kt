@@ -30,7 +30,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.resepkita.ui.screens.DetailScreen
+import com.example.resepkita.ui.screens.FavoritesScreen
 import com.example.resepkita.ui.screens.HomeScreen
+import com.example.resepkita.ui.screens.ProfileScreen
 import com.example.resepkita.ui.screens.SearchScreen
 import com.example.resepkita.ui.theme.ResepKitaTheme
 
@@ -66,9 +68,12 @@ fun MainApp() {
             composable("detail") {
                 DetailScreen(onNavigateBack = { navController.popBackStack() })
             }
-            // Placeholders
-            composable("favorites") { Box(Modifier.fillMaxSize()) }
-            composable("profile") { Box(Modifier.fillMaxSize()) }
+            composable("favorites") {
+                FavoritesScreen(onNavigateToDetail = { navController.navigate("detail") })
+            }
+            composable("profile") {
+                ProfileScreen()
+            }
         }
 
         // Show Glass Bottom Navigation Bar only if we are not on the detail screen
