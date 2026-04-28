@@ -1,9 +1,5 @@
 # ResepKita - Alur Pengerjaan
 
-Konten ini dibuat untuk mengganti bagian **ALUR PENGERJAAN** pada page 7 dan 8 dari contoh presentasi TaskManager, tetapi disesuaikan dengan struktur aplikasi **ResepKita** di folder `App`.
-
-## Page 7 - ALUR PENGERJAAN
-
 ### 1. SETUP PROJECT
 Membuat project Android dengan:
 
@@ -60,8 +56,6 @@ Membuat komponen UI sesuai kebutuhan aplikasi resep:
 - `InstructionStep`: langkah memasak
 - `FavoriteRecipeCard`: kartu resep favorit
 - `CookingStats` dan `TasteProfile`: ringkasan aktivitas memasak di Profile
-
-## Page 8 - ALUR PENGERJAAN
 
 ### 5. IMPLEMENTASI DATA & STATE
 Mengimplementasikan data dan state aplikasi dengan:
