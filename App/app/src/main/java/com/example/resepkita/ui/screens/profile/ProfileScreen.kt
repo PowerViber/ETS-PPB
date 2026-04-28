@@ -100,7 +100,7 @@ private fun ProfileHero() {
         Column(modifier = Modifier.padding(24.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 AsyncImage(
-                    model = "https://lh3.googleusercontent.com/aida-public/AB6AXuAHhCRCCo7MsNqHhDv_pIc4oxVX912gxf2MVrLKWg_I0V59oSDOd6jEYPv3POeGOz6oWanxpOeLVnyIvJJvoo06CDaiU-vMMMlQEOflwphJdtPSKSbrJKt_52ZYDEL-4tVUvIR0QiZOI8MDNtRPJ_89VEUwP_QKW-1qlqJtC_wVCo8TsKsp6-LTde2ZFDqVtYDww5NvdeUIPZLsR5ZS3ByLDQZm4QDqv8b5bhBXvv72tGTS1taFrDTWCRuwLiKYmy8qNxwGnU6Xa8PE",
+                    model = "file:///android_asset/photos/dzaky.png",
                     contentDescription = "Profile photo",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
