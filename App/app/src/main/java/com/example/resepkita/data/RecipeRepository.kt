@@ -53,7 +53,7 @@ object RecipeRepository {
         Recipe(
             id = "gado-gado-siram",
             name = "Gado-Gado Siram",
-            imageUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuBLum8-cNLnrTTci5mEY-uM3PZRx2_p9tN-7YOBfITkFwT29jtRwOKww_qsJJNvag_FQzM6_mqpzy1NW2gmzXZ45CnJdphZhBOKGLF5ksVakJ4iXeXGdabR31lCBnj3XcBgw1fJ1Hf4nDEgK380zbdVOgNJ28UEgkXmEABJeLSiEye5tgqKkD06qWR07Q5cMwfrYdvO21KPd0UH_rtuOOV2tn5D_cUjxc5pZZeosdDlwKqujR2VsLD7LcLv7txT525BLblJ6aIXLK10",
+            imageUrl = "file:///android_asset/photos/gado-gado.jpg",
             description = "Sayuran rebus, tahu, tempe, dan telur dengan siraman saus kacang gurih yang cocok untuk makan siang cepat.",
             ingredients = listOf(
                 "100 g kacang tanah goreng",
@@ -112,7 +112,7 @@ object RecipeRepository {
         Recipe(
             id = "nasi-goreng-kampung",
             name = "Nasi Goreng Kampung",
-            imageUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuAr_xdf7lZ9r6xjtib-CMkDYVRuxq6lNz4yA_DPHAPyb3fLoXEh7rI7C5V0JDOUdWfKsoxS3UjtXA_Pvyh5U1CMqDvv6qjA4tOMrfBN_zCyeBQeTN2YmYG7bJ5b4G-Ftam5FOyjmr8EcA1VFS1aO2x7CCZyFday_yx2VtXkGDRaWtUJpm7Sf5H3hqrWVauJuGggipRwYCkbWOtQBW9HPjHvaxviFOxvLhmJjQOvwRaxslMFcdnuTnoq01z3LH8RgcLmCPIsFka7rJqd",
+            imageUrl = "file:///android_asset/photos/nasi-goreng.jpg",
             description = "Nasi goreng rumahan dengan bawang, cabai, telur, dan kecap yang praktis untuk sarapan atau makan malam.",
             ingredients = listOf(
                 "2 piring nasi putih dingin",
@@ -140,7 +140,7 @@ object RecipeRepository {
         Recipe(
             id = "ayam-betutu",
             name = "Ayam Betutu",
-            imageUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuAHhCRCCo7MsNqHhDv_pIc4oxVX912gxf2MVrLKWg_I0V59oSDOd6jEYPv3POeGOz6oWanxpOeLVnyIvJJvoo06CDaiU-vMMMlQEOflwphJdtPSKSbrJKt_52ZYDEL-4tVUvIR0QiZOI8MDNtRPJ_89VEUwP_QKW-1qlqJtC_wVCo8TsKsp6-LTde2ZFDqVtYDww5NvdeUIPZLsR5ZS3ByLDQZm4QDqv8b5bhBXvv72tGTS1taFrDTWCRuwLiKYmy8qNxwGnU6Xa8PE",
+            imageUrl = "file:///android_asset/photos/ayam-betutu.jpg",
             description = "Ayam khas Bali dengan bumbu genep yang kuat, pedas, dan aromatik.",
             ingredients = listOf(
                 "1 ekor ayam",
